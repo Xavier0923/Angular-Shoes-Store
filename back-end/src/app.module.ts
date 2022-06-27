@@ -4,10 +4,10 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
     imports: [
-        UserModule,
         MongooseModule.forRoot(
-            'mongodb+srv://wei:wei1234@shoes-store.te48f.mongodb.net/?retryWrites=true&w=majority',
+            'mongodb+srv://wei:wei1234@shoes-store.te48f.mongodb.net/store',
         ),
+        UserModule,
     ],
     controllers: [],
     providers: [],

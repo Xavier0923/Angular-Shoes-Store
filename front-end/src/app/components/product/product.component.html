@@ -1,0 +1,32 @@
+<div class="product d-flex flex-wrap-w">
+    <mat-card>
+        <img src="/assets/images/1.jpg" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+            <mat-card-title>Air Jorden 4</mat-card-title>
+            <mat-card-subtitle style="display:flex;" class="flex-jc-between flex-ai-center">
+                <div class="d-flex flex-ai-center flex-jc-between">
+                    <p>Size : </p>
+                    <mat-form-field appearance="fill" style="font-size:6px;width:60px;margin-top:5px;">
+                        <mat-select>
+                            <mat-option *ngFor="let size of sizes" [value]="size">
+                                {{size}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <p>庫存 : 999</p>
+            </mat-card-subtitle>
+        </mat-card-content>
+        <mat-card-actions class="flex-jc-between flex-ai-center">
+            <p>NT$5000</p>
+            <div>
+                <button mat-icon-button color="basic" (click)="editProduct();">
+                    <mat-icon>tune</mat-icon>
+                </button>
+                <button mat-icon-button color="basic">
+                    <mat-icon>add_shopping_cart</mat-icon>
+                </button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+</div>

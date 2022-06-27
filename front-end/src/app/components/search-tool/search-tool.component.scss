@@ -1,0 +1,19 @@
+.search-tool {
+    padding: 30px 0;
+
+    mat-form-field {
+        width: 600px;
+
+        ::ng-deep .mat-form-field-wrapper {
+            padding: 0;
+        }
+
+    }
+
+    .shop-cart {
+        cursor: pointer;
+        mat-icon{
+            font-size: 30px;
+        }
+    }
+}

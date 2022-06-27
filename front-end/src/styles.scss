@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+@charset 'utf-8';
+
+// Import a Google Font 引入google字體
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;700;900&display=swap');
+
+*{
+    margin:0;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+// 文字顏色
+.white-text {
+  color: #fff;
+}
+
+// 超連結不要顏色
+a {
+    text-decoration: none;
+    color: #fff;
+    transition: .3s;
+
+    &:hover {
+        color:#E6E6E6;
+    }
+}
+
+.btn {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.d-flex {
+    display:flex;
+}
+
+.flex-jc-center {
+    justify-content: center;
+}
+
+.flex-jc-between {
+    justify-content: space-between;
+}
+
+.flex-ai-center {
+    align-items: center;
+}
+
+.flex-ai-end {
+    align-items: flex-end;
+}
+
+.flex-wrap-w{
+    flex-wrap: wrap;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.w-100 {
+    width:100%;
+}

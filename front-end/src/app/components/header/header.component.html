@@ -1,0 +1,31 @@
+<div class="header">
+    <mat-toolbar color="primary" class="flex-jc-between">
+        <div>
+            <a href="#">My Application</a>
+        </div>
+        <div>
+            <div class="visitor-status" *ngIf="!isLogin">
+                <button mat-raised-button color="primary" routerLink="/login">Login</button>
+                <button mat-raised-button color="primary" routerLink="/register">Register</button>
+            </div>
+            <div class="user-status" *ngIf="isLogin">
+                <button mat-raised-button color="primary" type="button"
+                    [matMenuTriggerFor]="beforeMenu">UserName</button>
+                <mat-menu #beforeMenu="matMenu" xPosition="before">
+                    <button mat-menu-item (click)="openUserInfo()">
+                        <mat-icon>manage_accounts</mat-icon>
+                        <span>User Info</span>
+                    </button>
+                    <button mat-menu-item (click)="openAddProduct()">
+                        <mat-icon>add_business</mat-icon>
+                        <span>Add Product</span>
+                    </button>
+                    <button mat-menu-item>
+                        <mat-icon>logout</mat-icon>
+                        <span>Logout</span>
+                    </button>
+                </mat-menu>
+            </div>
+        </div>
+    </mat-toolbar>
+</div>

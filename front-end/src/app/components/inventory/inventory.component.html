@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Edit Product</h1>
+<mat-divider></mat-divider>
+<mat-dialog-content>
+    <form action="">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput type="text">
+            <mat-icon matSuffix>edit_note</mat-icon>
+            <!-- <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <mat-icon>close</mat-icon>
+            </button> -->
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Picture</mat-label>
+            <input matInput type="text">
+            <mat-icon matSuffix>image</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Stock</mat-label>
+            <input matInput type="number">
+            <mat-icon matSuffix>inventory_2</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input matInput type="number">
+            <mat-icon matSuffix>price_change</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select>
+                <mat-option *ngFor="let status of productStatus" [value]="status">
+                    {{status}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="basic">cancel</button>
+    <button mat-raised-button color="accent">Submit</button>
+</mat-dialog-actions>

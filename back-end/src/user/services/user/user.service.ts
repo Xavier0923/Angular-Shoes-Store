@@ -1,8 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import {
+    BadRequestException,
+    Injectable,
+    NotFoundException,
+} from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { Connection, Model } from 'mongoose';
+import { Model } from 'mongoose';
 import { UserDto } from 'src/user/dto/user.dto';
 import { User, UserDocument } from 'src/user/schema/user.schema';
+import { LoginUserDto } from 'src/user/dto/loginUser.dto';
 
 @Injectable()
 export class UserService {
@@ -16,19 +21,21 @@ export class UserService {
         return this.userModel.findOne({ id });
     }
 
-    async findUser(email: string, password: string): Promise<boolean> {
-        return this.userModel.findOne(
-            { email, password },
-            function (err, docs) {
-                if (err) {
-                    return false;
-                } else if (docs) {
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-        );
+    async findUser(loginInfo: LoginUserDto): Promise<User> {
+        const { email, password } = loginInfo;
+        const user = await this.userModel.findOne({ email });
+        console.log(user);
+
+        if (!user) {
+            throw new NotFoundException('No Such User!!');
+        }
+        console.log('password', password);
+        console.log('user.password', user.password);
+
+        if (password !== user.password) {
+            throw new BadRequestException('Invalid credentials');
+        }
+        return user;
     }
 
     async create(createUserDto: UserDto): Promise<User> {

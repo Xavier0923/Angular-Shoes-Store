@@ -1,5 +1,5 @@
-import { LoginUserDto } from './../../dto/login-user.dto';
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { LoginUserDto } from '../../dto/loginUser.dto';
+import { Body, Controller, Get, Param, Post, Req } from '@nestjs/common';
 import { ApiBody } from '@nestjs/swagger';
 import { UserDto } from 'src/user/dto/user.dto';
 import { UserService } from 'src/user/services/user/user.service';
@@ -17,14 +17,15 @@ export class UserController {
         return this.userService.findOne(id);
     }
 
-    @Get('/login/:email/:password')
-    login(@Param('email') email: string, @Param('password') password: string) {
-        return this.userService.findUser(email, password);
+    @Post('login')
+    login(@Body() loginInfo: LoginUserDto) {
+        const res = this.userService.findUser(loginInfo);
+        return res;
     }
 
     @ApiBody({ type: UserDto })
     @Post()
-    createUser(@Body() userDto: UserDto) {
+    Register(@Body() userDto: UserDto) {
         return this.userService.create(userDto);
     }
 }

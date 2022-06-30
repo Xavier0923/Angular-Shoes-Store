@@ -13,11 +13,15 @@ import { LoginUserDto } from 'src/user/dto/loginUser.dto';
 export class UserService {
     constructor(@InjectModel('User') private userModel: Model<UserDocument>) {}
     async findAll(): Promise<User[]> {
-        return await this.userModel.find().lean();
+        const user = await this.userModel.find().lean();
+        if (user) return user;
+        else throw new BadRequestException('No User Profile!!');
     }
 
     async findOne(id: string): Promise<User> {
-        return await this.userModel.findOne({ _id: id }).lean();
+        const user = await this.userModel.findOne({ _id: id }).lean();
+        if (user) return user;
+        else throw new BadRequestException('No Such User!!');
     }
 
     async findUser(loginInfo: LoginUserDto): Promise<User> {

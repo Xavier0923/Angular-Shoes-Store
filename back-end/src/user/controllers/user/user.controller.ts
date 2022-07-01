@@ -1,4 +1,4 @@
-import { LoginUserDto } from '../../dto/loginUser.dto';
+import { Login } from '../../dto/login.dto';
 import {
     Body,
     ClassSerializerInterceptor,
@@ -18,16 +18,9 @@ export class UserController {
     constructor(private userService: UserService) {}
 
     @UseInterceptors(ClassSerializerInterceptor)
-    @Get(':id')
-    async getUserById(@Param('id') id: string) {
-        const user = await this.userService.findOne(id);
-        return new SerializedUser(user);
-    }
-
-    @UseInterceptors(ClassSerializerInterceptor)
     @Post('login')
-    async login(@Body() loginInfo: LoginUserDto) {
-        const user = await this.userService.findUser(loginInfo);
+    async login(@Body() loginInfo: Login) {
+        const user = await this.userService.login(loginInfo);
         return new SerializedUser(user);
     }
 

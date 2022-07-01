@@ -4,9 +4,10 @@ import { IsEmail } from 'class-validator';
 import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
+@Schema()
 export class User {
     @Prop()
-    id: number;
+    _id: number;
 
     @Prop()
     name: string;

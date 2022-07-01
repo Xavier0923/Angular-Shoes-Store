@@ -7,24 +7,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserDto } from 'src/user/dto/user.dto';
 import { User, UserDocument } from 'src/user/schema/user.schema';
-import { LoginUserDto } from 'src/user/dto/loginUser.dto';
+import { Login } from 'src/user/dto/login.dto';
 
 @Injectable()
 export class UserService {
     constructor(@InjectModel('User') private userModel: Model<UserDocument>) {}
-    async findAll(): Promise<User[]> {
-        const user = await this.userModel.find().lean();
-        if (user) return user;
-        else throw new BadRequestException('No User Profile!!');
-    }
 
-    async findOne(id: string): Promise<User> {
-        const user = await this.userModel.findOne({ _id: id }).lean();
-        if (user) return user;
-        else throw new BadRequestException('No Such User!!');
-    }
-
-    async findUser(loginInfo: LoginUserDto): Promise<User> {
+    // 登入
+    async login(loginInfo: Login): Promise<User> {
         const { email, password } = loginInfo;
         const user = await this.userModel.findOne({ email }).lean();
         console.log(user);
@@ -41,6 +31,7 @@ export class UserService {
         return user;
     }
 
+    // 註冊
     async create(createUserDto: UserDto): Promise<User> {
         const { name, email } = createUserDto;
         const checkIsHaveName = await this.userModel.findOne({ name: name });
@@ -54,4 +45,7 @@ export class UserService {
         const createdUser = new this.userModel(createUserDto);
         return (await createdUser.save()).toObject();
     }
+
+    // 忘記密碼
+    // async forgetPassword(email: string): Promise<User> {}
 }

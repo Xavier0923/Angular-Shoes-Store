@@ -7,11 +7,13 @@ import { Cart, CartDocument } from 'src/cart/schema/cart.schema';
 @Injectable()
 export class CartService {
     constructor(@InjectModel('Cart') private cartModel: Model<CartDocument>) {}
+    // 找出購買者的購物車的商品清單
     async findPurchaserCart(purchaser: string): Promise<Cart[]> {
         const cart = await this.cartModel.find({ purchaser: purchaser });
         return cart;
     }
 
+    // 新增購物車的商品
     async createToCart(createToCartDto: CartDto): Promise<Cart> {
         const { name } = createToCartDto;
         const CartItem = await this.cartModel.findOne({ name }).lean();
@@ -26,6 +28,7 @@ export class CartService {
         return createToCart.save();
     }
 
+    // 刪除購買者的購物車的商品
     async deleteFromCart(id: string): Promise<Cart> {
         const deleteFromCart = await this.cartModel.findByIdAndDelete(id);
         return deleteFromCart;

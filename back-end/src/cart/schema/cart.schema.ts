@@ -4,22 +4,22 @@ export type CartDocument = Cart & Document;
 
 @Schema()
 export class Cart {
-    @Prop()
+    @Prop() // 商品名稱
     name: string;
 
-    @Prop()
+    @Prop() // 副標
     subLable: string;
 
-    @Prop()
+    @Prop() // 單價
     unitPrice: number;
 
-    @Prop()
+    @Prop() // 商品圖片
     img: Buffer;
 
-    @Prop()
+    @Prop() // 數量
     quantity: number;
 
-    @Prop()
+    @Prop() // 購買人
     Purchaser: string;
 }
 
